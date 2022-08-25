@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hkumagai <hkumagai@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/13 09:17:59 by hkumagai          #+#    #+#             */
-/*   Updated: 2022/08/25 12:27:37 by hkumagai         ###   ########.fr       */
+/*   Created: 2022/06/30 05:40:49 by hkumagai          #+#    #+#             */
+/*   Updated: 2022/08/25 17:01:03 by hkumagai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./include/server.h"
-int main(int argc, char const *argv[])
+#include "../include/libft.h"
+
+void *ft_memcpy(void *dst, const void *src, size_t n)
 {
-	pid_t pid;
-	if (argc == 1)
-		return (0);
+	unsigned char *tmp;
+	unsigned char *ch;
 
-	pid = argc;
-
-	return 0;
+	if (!dst && !src)
+		return (NULL);
+	tmp = (unsigned char *)dst;
+	ch = (unsigned char *)src;
+	while (n--)
+		*tmp++ = *ch++;
+	return (dst);
 }

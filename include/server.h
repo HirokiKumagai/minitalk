@@ -8,5 +8,5 @@
 #include <stdio.h>
 #include <errno.h>
 #include <libc.h>
-
+#include "../lib/ft_printf/include/ft_printf.h"
 #endif // !SERVER_H# define SERVER_H
