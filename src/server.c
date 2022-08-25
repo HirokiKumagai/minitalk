@@ -6,7 +6,7 @@
 /*   By: hkumagai <hkumagai@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 09:17:59 by hkumagai          #+#    #+#             */
-/*   Updated: 2022/08/25 14:35:26 by hkumagai         ###   ########.fr       */
+/*   Updated: 2022/08/25 14:59:08 by hkumagai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,30 +18,31 @@ static void	handler(int signo)
 	exit(EXIT_SUCCESS);
 }
 
-int	main(int argc, char const *argv[])
+int	main(void)
 {
 	pid_t				pid;
-	struct sigaction	sig;
-	int					result;
+	struct sigaction	act;
 
 	pid = getpid();
 	ft_printf("PID:	%d\n", pid);
-	sig.sa_handler = handler;
-	result = sigaction(SIGUSR1, &sig, NULL);
-	if (result < 0)
+	ft_bzero(&act, sizeof(struct sigaction));
+	sigemptyset(&act.sa_mask);
+	act.sa_flags = SA_SIGINFO;
+	act.sa_handler = handler;
+	if (!sigaction(SIGUSR1, &act, NULL))
+	{
+		ft_printf("Error: sigaction()\n");
+		exit(1);
+	}
+	if (!sigaction(SIGUSR2, &act, NULL))
 	{
 		ft_printf("Error: sigaction()\n");
 		exit(1);
 	}
 	while (true)
 	{
-		// ft_printf("Working...!\n");
-		// ft_printf("%d\n", result);
+		ft_printf("Working...!\n");
 		sleep(1);
 	}
-
-	ft_printf("%d\n", argc);
-	ft_printf("%s\n", argv[1]);
-
 	return (0);
 }
