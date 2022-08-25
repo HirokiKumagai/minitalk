@@ -1,5 +1,5 @@
-#ifndef SERVER_H
-# define SERVER_H
+#ifndef CLIENT_H
+# define CLIENT_H
 
 # include <signal.h>
 # include <unistd.h>
@@ -9,4 +9,5 @@
 # include <stdio.h>
 # include <errno.h>
 # include "../lib/ft_printf/include/ft_printf.h"
+
 #endif
