@@ -6,7 +6,7 @@
 #    By: hkumagai <hkumagai@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/13 09:18:03 by hkumagai          #+#    #+#              #
-#    Updated: 2022/08/26 08:08:20 by hkumagai         ###   ########.fr        #
+#    Updated: 2022/08/26 14:55:50 by hkumagai         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,13 +53,15 @@ fclean: clean
 
 re: fclean all
 
-test:
+test: all
 	$(CC) $(CFLAGS) ${SERVER_NAME} -o test_server
 	$(CC) $(CFLAGS) ${CLIENT_NAME} -o test_client
 	./test_server &
-	pgrep test_server | xargs -i ./test_client {} t
-	pgrep test_server | xargs kill -9
-	rm test_server test_client
+	sleep 1
+	@pgrep test_server | xargs -i ./test_client {} testsagasgaafasfas
+	@echo;
+	@pgrep test_server | xargs kill -9
+	@rm test_server test_client
 
 mkd:
 	@mkdir -p ${OBJS_DIR}

@@ -6,7 +6,7 @@
 /*   By: hkumagai <hkumagai@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 09:17:59 by hkumagai          #+#    #+#             */
-/*   Updated: 2022/08/26 08:03:50 by hkumagai         ###   ########.fr       */
+/*   Updated: 2022/08/26 14:56:50 by hkumagai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,22 @@ static void	sigFunc(int sig, siginfo_t *info, void *ucontext)
 {
 	(void)info;
 	(void)ucontext;
-	ft_printf("SIGNO:	%d\n", sig);
-	// exit(EXIT_SUCCESS);
+	g_tmp.count++;
+	if (sig == SIGUSR1 && g_tmp.count <= 7)
+		g_tmp.bit <<= 1;
+	else if (sig == SIGUSR2 && g_tmp.count <= 7)
+	{
+		g_tmp.bit |= 1;
+		g_tmp.bit <<= 1;
+	}
+	if (g_tmp.count == 8)
+	{
+		if (sig == SIGUSR2)
+			g_tmp.bit |= 1;
+		ft_putchar_fd(g_tmp.bit, 1);
+		g_tmp.bit = 0;
+		g_tmp.count = 0;
+	}
 }
 
 int	main(void)
