@@ -6,16 +6,16 @@
 /*   By: hkumagai <hkumagai@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 05:41:10 by hkumagai          #+#    #+#             */
-/*   Updated: 2022/08/25 17:01:34 by hkumagai         ###   ########.fr       */
+/*   Updated: 2022/08/26 05:09:39 by hkumagai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
 
-char *ft_strdup(const char *s1)
+char	*ft_strdup(const char *s1)
 {
-	char *p;
-	size_t i;
+	char	*p;
+	size_t	i;
 
 	p = (char *)malloc(sizeof(char) * (ft_strlen(s1) + 1));
 	if (!p)

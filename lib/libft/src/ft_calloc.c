@@ -6,15 +6,15 @@
 /*   By: hkumagai <hkumagai@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 05:40:09 by hkumagai          #+#    #+#             */
-/*   Updated: 2022/08/25 17:00:29 by hkumagai         ###   ########.fr       */
+/*   Updated: 2022/08/26 05:06:32 by hkumagai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
 
-void *ft_calloc(size_t count, size_t size)
+void	*ft_calloc(size_t count, size_t size)
 {
-	void *p;
+	void	*p;
 
 	if (count == 0 || size == 0)
 	{

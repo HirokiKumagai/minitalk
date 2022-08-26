@@ -6,15 +6,15 @@
 /*   By: hkumagai <hkumagai@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 03:49:36 by hkumagai          #+#    #+#             */
-/*   Updated: 2022/08/25 17:02:13 by hkumagai         ###   ########.fr       */
+/*   Updated: 2022/08/26 05:11:27 by hkumagai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
 
-static size_t ft_strnlen(char const *str, size_t n)
+static size_t	ft_strnlen(char const *str, size_t n)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	while (i < n && str[i] != '\0')
@@ -22,11 +22,11 @@ static size_t ft_strnlen(char const *str, size_t n)
 	return (i);
 }
 
-char *ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char *dst;
-	size_t i;
-	size_t slen;
+	char	*dst;
+	size_t	i;
+	size_t	slen;
 
 	if (s == NULL)
 		return (NULL);

@@ -6,13 +6,13 @@
 /*   By: hkumagai <hkumagai@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 05:41:35 by hkumagai          #+#    #+#             */
-/*   Updated: 2022/08/25 17:02:15 by hkumagai         ###   ########.fr       */
+/*   Updated: 2022/08/26 05:11:32 by hkumagai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
 
-int ft_tolower(int c)
+int	ft_tolower(int c)
 {
 	if ('A' <= c && c <= 'Z')
 		return (c - ('A' - 'a'));

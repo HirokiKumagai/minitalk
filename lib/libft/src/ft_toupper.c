@@ -6,13 +6,13 @@
 /*   By: hkumagai <hkumagai@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 05:41:38 by hkumagai          #+#    #+#             */
-/*   Updated: 2022/08/25 17:02:18 by hkumagai         ###   ########.fr       */
+/*   Updated: 2022/08/26 05:11:38 by hkumagai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
 
-int ft_toupper(int c)
+int	ft_toupper(int c)
 {
 	if ('a' <= c && c <= 'z')
 		return (c + ('A' - 'a'));

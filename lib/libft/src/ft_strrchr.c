@@ -6,15 +6,15 @@
 /*   By: hkumagai <hkumagai@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 05:41:29 by hkumagai          #+#    #+#             */
-/*   Updated: 2022/08/25 17:02:08 by hkumagai         ###   ########.fr       */
+/*   Updated: 2022/08/26 05:11:01 by hkumagai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
 
-char *ft_strrchr(const char *src, int c)
+char	*ft_strrchr(const char *src, int c)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (src[i] != '\0')

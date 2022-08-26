@@ -6,16 +6,16 @@
 /*   By: hkumagai <hkumagai@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 07:10:33 by hkumagai          #+#    #+#             */
-/*   Updated: 2022/08/25 17:01:19 by hkumagai         ###   ########.fr       */
+/*   Updated: 2022/08/26 05:08:50 by hkumagai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
 
-void ft_putstr_fd(char *s, int fd)
+void	ft_putstr_fd(char *s, int fd)
 {
 	if (s == NULL)
-		return;
+		return ;
 	write(fd, s, ft_strlen(s));
 }
 // #include <stdio.h>

@@ -6,16 +6,16 @@
 /*   By: hkumagai <hkumagai@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 05:41:27 by hkumagai          #+#    #+#             */
-/*   Updated: 2022/08/25 17:02:06 by hkumagai         ###   ########.fr       */
+/*   Updated: 2022/08/26 05:10:51 by hkumagai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
 
-char *ft_strnstr(const char *haystack, const char *needle, size_t len)
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
-	size_t i;
-	size_t j;
+	size_t	i;
+	size_t	j;
 
 	if (*needle == '\0')
 		return ((char *)haystack);

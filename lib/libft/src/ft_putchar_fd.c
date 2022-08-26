@@ -6,13 +6,13 @@
 /*   By: hkumagai <hkumagai@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 07:10:25 by hkumagai          #+#    #+#             */
-/*   Updated: 2022/08/25 17:01:10 by hkumagai         ###   ########.fr       */
+/*   Updated: 2022/08/26 05:08:18 by hkumagai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
 
-void ft_putchar_fd(char c, int fd)
+void	ft_putchar_fd(char c, int fd)
 {
 	write(fd, &c, 1);
 }

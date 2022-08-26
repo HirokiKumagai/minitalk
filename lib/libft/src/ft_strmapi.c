@@ -6,16 +6,16 @@
 /*   By: hkumagai <hkumagai@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 07:10:39 by hkumagai          #+#    #+#             */
-/*   Updated: 2022/08/25 17:02:00 by hkumagai         ###   ########.fr       */
+/*   Updated: 2022/08/26 05:10:37 by hkumagai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
 
-char *ft_strmapi(char const *s, char (*f)(unsigned int, char))
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	unsigned int i;
-	char *str;
+	unsigned int	i;
+	char			*str;
 
 	if (s == NULL || f == NULL)
 		return (NULL);

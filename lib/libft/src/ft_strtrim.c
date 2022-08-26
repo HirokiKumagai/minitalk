@@ -6,18 +6,18 @@
 /*   By: hkumagai <hkumagai@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 05:41:31 by hkumagai          #+#    #+#             */
-/*   Updated: 2022/08/25 17:02:11 by hkumagai         ###   ########.fr       */
+/*   Updated: 2022/08/26 05:11:13 by hkumagai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
 
-char *ft_strtrim(char const *str, char const *set)
+char	*ft_strtrim(char const *str, char const *set)
 {
-	char *trim;
-	size_t start;
-	size_t end;
-	size_t i;
+	char	*trim;
+	size_t	start;
+	size_t	end;
+	size_t	i;
 
 	if (str == NULL || set == NULL)
 		return (NULL);

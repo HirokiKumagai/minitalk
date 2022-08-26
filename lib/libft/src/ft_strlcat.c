@@ -6,17 +6,17 @@
 /*   By: hkumagai <hkumagai@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 05:41:15 by hkumagai          #+#    #+#             */
-/*   Updated: 2022/08/25 17:01:53 by hkumagai         ###   ########.fr       */
+/*   Updated: 2022/08/26 05:10:10 by hkumagai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
 
-size_t ft_strlcat(char *dst, const char *src, size_t dstsize)
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-	size_t count;
-	size_t dest_length;
-	size_t src_length;
+	size_t	count;
+	size_t	dest_length;
+	size_t	src_length;
 
 	count = 0;
 	if (dstsize == 0)

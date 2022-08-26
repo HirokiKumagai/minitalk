@@ -6,7 +6,7 @@
 /*   By: hkumagai <hkumagai@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 05:39:57 by hkumagai          #+#    #+#             */
-/*   Updated: 2022/08/25 17:00:22 by hkumagai         ###   ########.fr       */
+/*   Updated: 2022/08/26 05:13:39 by hkumagai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,17 @@
 // #include <stdio.h>
 // #include <stdlib.h>
 
-int ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
-	size_t i;
-	long num;
-	int sign;
+	size_t	i;
+	long	num;
+	int		sign;
 
 	i = 0;
 	num = 0;
 	sign = 1;
-	while (str[i] == ' ' || str[i] == '\f' || str[i] == '\n' || str[i] == '\r' || str[i] == '\t' || str[i] == '\v')
+	while (str[i] == ' ' || str[i] == '\f' || str[i] == '\n' || str[i] == '\r' \
+		|| str[i] == '\t' || str[i] == '\v')
 		i++;
 	if (str[i] == '+' || str[i] == '-')
 	{

@@ -6,17 +6,17 @@
 /*   By: hkumagai <hkumagai@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 05:41:13 by hkumagai          #+#    #+#             */
-/*   Updated: 2022/08/25 17:01:49 by hkumagai         ###   ########.fr       */
+/*   Updated: 2022/08/26 05:09:58 by hkumagai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
 
-char *ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char *dst;
-	size_t i;
-	size_t j;
+	char	*dst;
+	size_t	i;
+	size_t	j;
 
 	if (s1 == NULL || s2 == NULL)
 		return (NULL);

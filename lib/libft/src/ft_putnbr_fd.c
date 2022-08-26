@@ -6,13 +6,13 @@
 /*   By: hkumagai <hkumagai@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 07:10:30 by hkumagai          #+#    #+#             */
-/*   Updated: 2022/08/25 17:01:16 by hkumagai         ###   ########.fr       */
+/*   Updated: 2022/08/26 05:08:43 by hkumagai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
 
-static unsigned int ft_putneg_fd(int n, int fd)
+static unsigned int	ft_putneg_fd(int n, int fd)
 {
 	if (n < 0)
 	{
@@ -22,11 +22,11 @@ static unsigned int ft_putneg_fd(int n, int fd)
 	return (n);
 }
 
-void ft_putnbr_fd(int n, int fd)
+void	ft_putnbr_fd(int n, int fd)
 {
-	unsigned int nb;
-	unsigned int exp;
-	const unsigned int base = 10;
+	unsigned int		nb;
+	unsigned int		exp;
+	const unsigned int	base = 10;
 
 	nb = ft_putneg_fd(n, fd);
 	exp = 1;

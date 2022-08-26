@@ -6,15 +6,15 @@
 /*   By: hkumagai <hkumagai@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 05:40:28 by hkumagai          #+#    #+#             */
-/*   Updated: 2022/08/25 17:00:50 by hkumagai         ###   ########.fr       */
+/*   Updated: 2022/08/26 05:07:33 by hkumagai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
 
-static size_t ft_count_len(int n)
+static size_t	ft_count_len(int n)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	if (n <= 0)
@@ -27,9 +27,9 @@ static size_t ft_count_len(int n)
 	return (i);
 }
 
-static unsigned int ft_abs(int n)
+static unsigned int	ft_abs(int n)
 {
-	unsigned int result;
+	unsigned int	result;
 
 	if (n < 0)
 		result = -n;
@@ -38,11 +38,11 @@ static unsigned int ft_abs(int n)
 	return (result);
 }
 
-char *ft_itoa(int n)
+char	*ft_itoa(int n)
 {
-	char *result;
-	size_t len;
-	unsigned int nb;
+	char			*result;
+	size_t			len;
+	unsigned int	nb;
 
 	len = ft_count_len(n);
 	result = (char *)malloc(sizeof(char) * (len + 1));

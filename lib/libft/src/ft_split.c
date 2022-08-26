@@ -6,17 +6,17 @@
 /*   By: hkumagai <hkumagai@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 05:41:04 by hkumagai          #+#    #+#             */
-/*   Updated: 2022/08/25 17:01:28 by hkumagai         ###   ########.fr       */
+/*   Updated: 2022/08/26 05:09:21 by hkumagai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
 
-static size_t ft_count(char const *s, char c)
+static size_t	ft_count(char const *s, char c)
 
 {
-	size_t i;
-	size_t count;
+	size_t	i;
+	size_t	count;
 
 	i = 0;
 	count = 0;
@@ -29,9 +29,9 @@ static size_t ft_count(char const *s, char c)
 	return (count);
 }
 
-static void *ft_free_split(char **split)
+static void	*ft_free_split(char **split)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	while (split[i])
@@ -44,11 +44,11 @@ static void *ft_free_split(char **split)
 	return (NULL);
 }
 
-static char **ft_split_putstr(char const *s, char c, char **split)
+static char	**ft_split_putstr(char const *s, char c, char **split)
 {
-	size_t splen;
-	size_t i;
-	size_t spi;
+	size_t	splen;
+	size_t	i;
+	size_t	spi;
 
 	i = 0;
 	splen = 0;
@@ -72,10 +72,10 @@ static char **ft_split_putstr(char const *s, char c, char **split)
 	return (split);
 }
 
-char **ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
-	size_t count;
-	char **split;
+	size_t	count;
+	char	**split;
 
 	if (!s)
 		return (NULL);

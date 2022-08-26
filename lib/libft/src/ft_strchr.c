@@ -6,13 +6,13 @@
 /*   By: hkumagai <hkumagai@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 05:41:08 by hkumagai          #+#    #+#             */
-/*   Updated: 2022/08/25 17:01:30 by hkumagai         ###   ########.fr       */
+/*   Updated: 2022/08/26 05:09:29 by hkumagai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
 
-char *ft_strchr(const char *src, int c)
+char	*ft_strchr(const char *src, int c)
 {
 	while (*src != '\0' && *src != (char)c)
 		src++;
