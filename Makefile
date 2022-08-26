@@ -6,7 +6,7 @@
 #    By: hkumagai <hkumagai@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/13 09:18:03 by hkumagai          #+#    #+#              #
-#    Updated: 2022/08/26 14:55:50 by hkumagai         ###   ########.fr        #
+#    Updated: 2022/08/26 15:16:35 by hkumagai         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,8 @@ CLIENT_SRC = client.c
 OBJS_DIR = ./objs
 SERVER_OBJ = $(addprefix $(OBJS_DIR)/, $(notdir $(SERVER_SRC:.c=.o)))
 CLIENT_OBJ = $(addprefix $(OBJS_DIR)/, $(notdir $(CLIENT_SRC:.c=.o)))
+
+TEST_CASE = testtetesadfadfsadfafdsa
 
 all:${SERVER_NAME} ${CLIENT_NAME}
 
@@ -54,16 +56,16 @@ fclean: clean
 re: fclean all
 
 test: all
-	$(CC) $(CFLAGS) ${SERVER_NAME} -o test_server
-	$(CC) $(CFLAGS) ${CLIENT_NAME} -o test_client
-	./test_server &
-	sleep 1
-	@pgrep test_server | xargs -i ./test_client {} testsagasgaafasfas
+	$(CC) $(CFLAGS) ${SERVER_NAME} -o test_${SERVER_NAME}
+	$(CC) $(CFLAGS) ${CLIENT_NAME} -o test_${CLIENT_NAME}
+	./test_${SERVER_NAME} &
+	@sleep 1
+	@pgrep test_${SERVER_NAME} | xargs -i ./test_${CLIENT_NAME} {} ${TEST_CASE}
 	@echo;
-	@pgrep test_server | xargs kill -9
-	@rm test_server test_client
+	@pgrep test_${SERVER_NAME} | xargs kill -9
+	@rm test_${SERVER_NAME} test_${CLIENT_NAME}
 
 mkd:
 	@mkdir -p ${OBJS_DIR}
 
-.PHONY: all clean fclean re mkd libMake
+.PHONY: all clean fclean re mkd libMake test

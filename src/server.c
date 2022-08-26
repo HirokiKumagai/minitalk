@@ -6,7 +6,7 @@
 /*   By: hkumagai <hkumagai@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 09:17:59 by hkumagai          #+#    #+#             */
-/*   Updated: 2022/08/26 14:56:50 by hkumagai         ###   ########.fr       */
+/*   Updated: 2022/08/26 15:28:13 by hkumagai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	main(void)
 	}
 	while (true)
 	{
-		sleep(1);
+		pause();
 	}
 	return (0);
 }
