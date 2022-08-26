@@ -6,26 +6,26 @@
 /*   By: hkumagai <hkumagai@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 09:17:59 by hkumagai          #+#    #+#             */
-/*   Updated: 2022/08/26 08:49:41 by hkumagai         ###   ########.fr       */
+/*   Updated: 2022/08/26 14:50:08 by hkumagai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/client.h"
-static void	printBitC(unsigned char c)
-{
-	unsigned char	bit;
+// static void	printBitC(unsigned char c)
+// {
+// 	unsigned char	bit;
 
-	bit = 1 << 7;
-	while (bit != 0)
-	{
-		if (c & bit)
-			ft_putchar_fd('1', 1);
-		else
-			ft_putchar_fd('0', 1);
-		bit >>= 1;
-	}
-	ft_putchar_fd('\n', 1);
-}
+// 	bit = 1 << 7;
+// 	while (bit != 0)
+// 	{
+// 		if (c & bit)
+// 			ft_putchar_fd('1', 1);
+// 		else
+// 			ft_putchar_fd('0', 1);
+// 		bit >>= 1;
+// 	}
+// 	ft_putchar_fd('\n', 1);
+// }
 
 static void	send_char(unsigned char byte, pid_t pid)
 {
@@ -57,7 +57,6 @@ int	main(int argc, char const *argv[])
 	i = 0;
 	while (argv[2][i] != '\0')
 	{
-		printBitC(argv[2][i]);
 		send_char((unsigned char)argv[2][i++], pid);
 	}
 
