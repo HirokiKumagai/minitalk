@@ -6,7 +6,7 @@
 #    By: hkumagai <hkumagai@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/13 09:18:03 by hkumagai          #+#    #+#              #
-#    Updated: 2022/08/25 17:09:44 by hkumagai         ###   ########.fr        #
+#    Updated: 2022/08/26 07:09:17 by hkumagai         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,6 +52,13 @@ fclean: clean
 	@make fclean -C ./lib/ft_printf
 
 re: fclean all
+
+test:
+	$(CC) $(CFLAGS) ${SERVER_NAME} -o test_server
+	$(CC) $(CFLAGS) ${CLIENT_NAME} -o test_client
+	./test_server &
+	pgrep test_server | xargs ./test_client
+	rm test_server test_client
 
 mkd:
 	@mkdir -p ${OBJS_DIR}
