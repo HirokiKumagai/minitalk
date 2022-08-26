@@ -6,7 +6,7 @@
 /*   By: hkumagai <hkumagai@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 09:17:59 by hkumagai          #+#    #+#             */
-/*   Updated: 2022/08/26 15:57:58 by hkumagai         ###   ########.fr       */
+/*   Updated: 2022/08/26 16:26:57 by hkumagai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,11 @@ static int	check_args(int argc, char const *argv[])
 			return (false);
 		}
 		i++;
+	}
+	if (*pid < DARWIN_PID_MIN || *pid > DARWIN_PID_MAX)
+	{
+		ft_putstr_fd("invalid args\n", 1);
+		return (false);
 	}
 	return (true);
 }

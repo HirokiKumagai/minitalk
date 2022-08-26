@@ -4,7 +4,8 @@
 # define BYTE_COUNT 8
 # define MSB 128
 # define WAIT_TIME 2000
-
+# define DARWIN_PID_MIN 100
+# define DARWIN_PID_MAX 99998
 # include <signal.h>
 # include <unistd.h>
 # include <sys/types.h>
