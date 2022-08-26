@@ -6,7 +6,7 @@
 /*   By: hkumagai <hkumagai@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 09:17:59 by hkumagai          #+#    #+#             */
-/*   Updated: 2022/08/26 16:26:57 by hkumagai         ###   ########.fr       */
+/*   Updated: 2022/08/26 17:10:41 by hkumagai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,32 +26,29 @@
 // 	}
 // 	ft_putchar_fd('\n', 1);
 // }
-static int	check_args(int argc, char const *argv[])
+static int	ft_puterr(char *errmsg)
+{
+	ft_putendl_fd(errmsg, 1);
+	return (false);
+}
+
+static int	check_args(int argc, char const *argv[], pid_t pid)
 {
 	size_t	i;
 	size_t	len;
 
 	if (argc != 3)
-	{
-		ft_putstr_fd("invalid args\n", 1);
-		return (false);
-	}
+		return (ft_puterr("invalid arg count"));
 	i = 0;
 	len = ft_strlen(argv[1]);
 	while (i < len)
 	{
 		if (!ft_isdigit(argv[1][i]))
-		{
-			ft_putstr_fd("invalid args\n", 1);
-			return (false);
-		}
+			return (ft_puterr("invalid pid"));
 		i++;
 	}
-	if (*pid < DARWIN_PID_MIN || *pid > DARWIN_PID_MAX)
-	{
-		ft_putstr_fd("invalid args\n", 1);
-		return (false);
-	}
+	if (pid < DARWIN_PID_MIN || pid > DARWIN_PID_MAX)
+		return (ft_puterr("invalid pid of range"));
 	return (true);
 }
 
@@ -80,9 +77,9 @@ int	main(int argc, char const *argv[])
 	pid_t	pid;
 	size_t	i;
 
-	if (check_args(argc, argv) == false)
-		exit(1);
 	pid = ft_atoi(argv[1]);
+	if (check_args(argc, argv, pid) == false)
+		exit(1);
 	i = 0;
 	while (argv[2][i] != '\0')
 	{
