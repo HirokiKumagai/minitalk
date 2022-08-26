@@ -9,4 +9,13 @@
 # include <stdio.h>
 # include <errno.h>
 # include "../lib/ft_printf/include/ft_printf.h"
+
+typedef struct s_tmp
+{
+	int				count;
+	unsigned char	bit;
+}				t_tmp;
+
+t_tmp	g_tmp = {0, 0};
+
 #endif

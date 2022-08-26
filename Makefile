@@ -6,7 +6,7 @@
 #    By: hkumagai <hkumagai@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/13 09:18:03 by hkumagai          #+#    #+#              #
-#    Updated: 2022/08/26 07:09:17 by hkumagai         ###   ########.fr        #
+#    Updated: 2022/08/26 08:08:20 by hkumagai         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,7 +57,8 @@ test:
 	$(CC) $(CFLAGS) ${SERVER_NAME} -o test_server
 	$(CC) $(CFLAGS) ${CLIENT_NAME} -o test_client
 	./test_server &
-	pgrep test_server | xargs ./test_client
+	pgrep test_server | xargs -i ./test_client {} t
+	pgrep test_server | xargs kill -9
 	rm test_server test_client
 
 mkd:
