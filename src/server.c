@@ -6,7 +6,7 @@
 /*   By: hkumagai <hkumagai@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 09:17:59 by hkumagai          #+#    #+#             */
-/*   Updated: 2022/08/26 15:28:13 by hkumagai         ###   ########.fr       */
+/*   Updated: 2022/08/26 15:57:56 by hkumagai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,21 @@ static void	sigFunc(int sig, siginfo_t *info, void *ucontext)
 {
 	(void)info;
 	(void)ucontext;
-	g_tmp.count++;
-	if (sig == SIGUSR1 && g_tmp.count <= 7)
-		g_tmp.bit <<= 1;
-	else if (sig == SIGUSR2 && g_tmp.count <= 7)
+	g_sigchar.count++;
+	if (sig == SIGUSR1 && g_sigchar.count < BYTE_COUNT)
+		g_sigchar.bit <<= 1;
+	else if (sig == SIGUSR2 && g_sigchar.count < BYTE_COUNT)
 	{
-		g_tmp.bit |= 1;
-		g_tmp.bit <<= 1;
+		g_sigchar.bit |= 1;
+		g_sigchar.bit <<= 1;
 	}
-	if (g_tmp.count == 8)
+	if (g_sigchar.count == BYTE_COUNT)
 	{
 		if (sig == SIGUSR2)
-			g_tmp.bit |= 1;
-		ft_putchar_fd(g_tmp.bit, 1);
-		g_tmp.bit = 0;
-		g_tmp.count = 0;
+			g_sigchar.bit |= 1;
+		ft_putchar_fd(g_sigchar.bit, 1);
+		g_sigchar.bit = 0;
+		g_sigchar.count = 0;
 	}
 }
 
@@ -48,16 +48,14 @@ int	main(void)
 	if (sigaction(SIGUSR1, &act, NULL) != 0)
 	{
 		ft_printf("Error: sigaction()\n");
-		exit(1);
+		exit(EXIT_ERROR);
 	}
 	if (sigaction(SIGUSR2, &act, NULL) != 0)
 	{
 		ft_printf("Error: sigaction()\n");
-		exit(1);
+		exit(EXIT_ERROR);
 	}
 	while (true)
-	{
 		pause();
-	}
 	return (0);
 }

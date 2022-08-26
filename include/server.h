@@ -1,6 +1,9 @@
 #ifndef SERVER_H
 # define SERVER_H
 
+# define EXIT_ERROR 1
+# define BYTE_COUNT 8
+
 # include <signal.h>
 # include <unistd.h>
 # include <sys/types.h>
@@ -10,12 +13,12 @@
 # include <errno.h>
 # include "../lib/ft_printf/include/ft_printf.h"
 
-typedef struct s_tmp
+typedef struct s_sigchar
 {
 	int				count;
 	unsigned char	bit;
-}				t_tmp;
+}				t_sigchar;
 
-t_tmp	g_tmp = {0, 0};
+t_sigchar	g_sigchar = {0, 0};
 
 #endif

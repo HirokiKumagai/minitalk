@@ -6,7 +6,7 @@
 /*   By: hkumagai <hkumagai@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 09:17:59 by hkumagai          #+#    #+#             */
-/*   Updated: 2022/08/26 15:31:58 by hkumagai         ###   ########.fr       */
+/*   Updated: 2022/08/26 15:57:58 by hkumagai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,16 +56,16 @@ static void	send_char(unsigned char byte, pid_t pid)
 	int				i;
 
 	i = 0;
-	while (i < 8)
+	while (i < BYTE_COUNT)
 	{
-		bit = byte & 128;
-		if (bit != 128)
+		bit = byte & MSB;
+		if (bit != MSB)
 			kill(pid, SIGUSR1);
-		else if (bit == 128)
+		else if (bit == MSB)
 			kill(pid, SIGUSR2);
 		byte <<= 1;
 		i++;
-		usleep(2000);
+		usleep(WAIT_TIME);
 	}
 	return ;
 }

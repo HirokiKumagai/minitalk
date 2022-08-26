@@ -1,6 +1,10 @@
 #ifndef CLIENT_H
 # define CLIENT_H
 
+# define BYTE_COUNT 8
+# define MSB 128
+# define WAIT_TIME 2000
+
 # include <signal.h>
 # include <unistd.h>
 # include <sys/types.h>
