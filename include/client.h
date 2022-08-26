@@ -8,6 +8,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <errno.h>
+# include <stdbool.h>
 # include "../lib/ft_printf/include/ft_printf.h"
 
 #endif
