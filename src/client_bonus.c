@@ -6,7 +6,7 @@
 /*   By: hkumagai <hkumagai@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 09:17:59 by hkumagai          #+#    #+#             */
-/*   Updated: 2022/08/26 17:26:59 by hkumagai         ###   ########.fr       */
+/*   Updated: 2022/08/28 15:25:37 by hkumagai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,38 +52,27 @@ static int	check_args(int argc, char const *argv[], pid_t pid)
 	return (true);
 }
 
-static void	send_char(unsigned char byte, pid_t pid)
-{
-	unsigned char	bit;
-	int				i;
-
-	i = 0;
-	while (i < BYTE_COUNT)
-	{
-		bit = byte & MSB;
-		if (bit != MSB)
-			kill(pid, SIGUSR1);
-		else if (bit == MSB)
-			kill(pid, SIGUSR2);
-		byte <<= 1;
-		i++;
-		usleep(WAIT_TIME);
-	}
-	return ;
-}
-
 int	main(int argc, char const *argv[])
 {
-	pid_t	pid;
+	pid_t	server_pid;
+	char	*client_pid;
 	size_t	i;
 
-	pid = ft_atoi(argv[1]);
-	if (check_args(argc, argv, pid) == false)
+	server_pid = ft_atoi(argv[1]);
+	if (check_args(argc, argv, server_pid) == false)
 		exit(1);
 	i = 0;
 	while (argv[2][i] != '\0')
 	{
-		send_char((unsigned char)argv[2][i], pid);
+		send_char((unsigned char)argv[2][i], server_pid);
+		i++;
+	}
+	send_char((unsigned char)argv[2][i], server_pid);
+	i = 0;
+	client_pid = ft_itoa(getpid());
+	while (client_pid[i] != '\0')
+	{
+		send_char((unsigned char)client_pid[i], server_pid);
 		i++;
 	}
 	return (0);
