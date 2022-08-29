@@ -40,20 +40,15 @@ void	sigFunc(int sig, siginfo_t *info, void *ucontext)
 		}
 		if (g_sigchar.isBitEnd == false)
 			ft_putchar_fd(g_sigchar.bit, 1);
-
 		if (g_sigchar.isBitEnd == true && g_sigchar.clientPID == '\0')
 		{
-			int i = 0;
-			while ("\nsend complete"[i] != '\0')
-				send_char("\nsend complete"[i++], g_sigchar.clientPIDs);
-			send_char("\nsend complete"[i], g_sigchar.clientPIDs);
+			send_message("\nsend complete", g_sigchar.clientPIDs);
 			g_sigchar.isBitEnd = false;
 			g_sigchar.clientPIDs = 0;
 		}
 		if (g_sigchar.isBitEnd == true && g_sigchar.clientPID != '\0')
 			g_sigchar.clientPIDs = \
 				g_sigchar.clientPIDs * 10 + (g_sigchar.clientPID - '0');
-
 		g_sigchar.count = 0;
 		g_sigchar.bit = 0;
 		g_sigchar.clientPID = 0;
@@ -91,3 +86,4 @@ void	get_process_num(int sig)
 			g_sigchar.clientPID |= 1;
 	}
 }
+

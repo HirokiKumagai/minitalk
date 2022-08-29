@@ -14,7 +14,7 @@
 # include <errno.h>
 # include <stdbool.h>
 # include "../lib/ft_printf/include/ft_printf.h"
-# include "./send_char.h"
+# include "./send_message.h"
 
 typedef struct s_sigchar
 {

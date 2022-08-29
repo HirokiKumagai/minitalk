@@ -6,7 +6,7 @@
 # include <stdlib.h>
 # include <stdbool.h>
 # include "../lib/ft_printf/include/ft_printf.h"
-# include "./send_char.h"
+# include "./send_message.h"
 
 void	sigFunc(int sig, siginfo_t *info, void *ucontext);
 void	receive_signal(void);

@@ -1,4 +1,4 @@
-#include "../include/send_char.h"
+#include "../include/send_message.h"
 #include <stdio.h>
 
 void	send_char(unsigned char byte, pid_t pid)
@@ -19,4 +19,14 @@ void	send_char(unsigned char byte, pid_t pid)
 		usleep(WAIT_TIME);
 	}
 	return ;
+}
+
+void	send_message(char *str, pid_t pid)
+{
+	size_t	i;
+
+	i = 0;
+	while (str[i] != '\0')
+		send_char(str[i++], pid);
+	send_char(str[i], pid);
 }
