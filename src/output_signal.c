@@ -13,6 +13,7 @@ static void	get_char(int sig)
 		if (sig == SIGUSR2)
 			g_sigchar.bit |= 1;
 	}
+	usleep(10);
 }
 
 static void	get_sender_pid(int sig)
@@ -29,6 +30,7 @@ static void	get_sender_pid(int sig)
 		if (sig == SIGUSR2)
 			g_sigchar.pid_bit |= 1;
 	}
+	usleep(10);
 }
 
 static void	send_back_signal(void)
