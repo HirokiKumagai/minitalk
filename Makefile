@@ -6,7 +6,7 @@
 #    By: hkumagai <hkumagai@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/13 09:18:03 by hkumagai          #+#    #+#              #
-#    Updated: 2022/08/29 07:38:35 by hkumagai         ###   ########.fr        #
+#    Updated: 2022/08/29 08:21:38 by hkumagai         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ CLIENT_BONUS_NAME = client_bonus
 SRCS_DIR = ./src
 SERVER_SRC = server.c
 CLIENT_SRC = client.c
-SERVER_BONUS_SRC = server_bonus.c send_char.c
+SERVER_BONUS_SRC = server_bonus.c send_char.c receive_signal.c
 CLIENT_BONUS_SRC = client_bonus.c send_char.c
 
 OBJS_DIR = ./objs
