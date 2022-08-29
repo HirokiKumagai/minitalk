@@ -6,7 +6,7 @@
 #    By: hkumagai <hkumagai@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/13 09:18:03 by hkumagai          #+#    #+#              #
-#    Updated: 2022/08/28 17:07:20 by hkumagai         ###   ########.fr        #
+#    Updated: 2022/08/29 06:39:49 by hkumagai         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,7 +53,8 @@ ${CLIENT_NAME}:mkd libMake ${CLIENT_OBJ}
 	@ar -rcs $(CLIENT_NAME) $(CLIENT_OBJ)
 
 clean:
-	@rm -rf ${SERVER_NAME} ${CLIENT_NAME} ${SERVER_BONUS_NAME} ${CLIENT_BONUS_NAME}
+	@rm -rf ${SERVER_NAME} ${CLIENT_NAME} ${SERVER_BONUS_NAME} ${CLIENT_BONUS_NAME} \
+	b_${SERVER_BONUS_NAME} b_${CLIENT_BONUS_NAME}
 	@make clean -C ./lib/ft_printf
 
 fclean: clean
@@ -81,7 +82,7 @@ pre_test:
 	@sleep 1
 
 kill_ps:
-	@pgrep test_${SERVER_NAME} | xargs kill -9
+	@pgrep ${SERVER_NAME} | xargs kill -9
 
 mkd:
 	@mkdir -p ${OBJS_DIR}
@@ -91,10 +92,16 @@ bonus: ${SERVER_BONUS_NAME} ${CLIENT_BONUS_NAME}
 ${SERVER_BONUS_NAME}: mkd libMake ${SERVER_BONUS_OBJ}
 	@cp ./lib/ft_printf/libftprintf.a ${SERVER_BONUS_NAME}
 	@ar -rcs $(SERVER_BONUS_NAME) $(SERVER_BONUS_OBJ)
+	$(CC) $(CFLAGS) ${SERVER_BONUS_NAME} -o b_${SERVER_BONUS_NAME}
 
 ${CLIENT_BONUS_NAME}:mkd libMake ${CLIENT_BONUS_OBJ}
 	@cp ./lib/ft_printf/libftprintf.a ${CLIENT_BONUS_NAME}
 	@ar -rcs $(CLIENT_BONUS_NAME) $(CLIENT_BONUS_OBJ)
+	$(CC) $(CFLAGS) ${CLIENT_BONUS_NAME} -o b_${CLIENT_BONUS_NAME}
+
+bonus_pre_test:
+	./b_${SERVER_BONUS_NAME} &
+	@sleep 1
 
 bonus_test: bonus bonus_pre_test
 	@echo "TEST_CASE1"
@@ -105,12 +112,6 @@ bonus_test: bonus bonus_pre_test
 	@echo;
 	@pgrep b_${SERVER_BONUS_NAME} | xargs kill -9
 	@rm b_${SERVER_BONUS_NAME} b_${CLIENT_BONUS_NAME}
-
-bonus_pre_test:
-	$(CC) $(CFLAGS) ${SERVER_BONUS_NAME} -o b_${SERVER_BONUS_NAME}
-	$(CC) $(CFLAGS) ${CLIENT_BONUS_NAME} -o b_${CLIENT_BONUS_NAME}
-	./b_${SERVER_BONUS_NAME} &
-	@sleep 1
 
 .PHONY: all clean fclean re mkd libMake test pre_test kill_ps \
 		bonus bonus_test bonus_pre_test re_bonus
