@@ -6,7 +6,7 @@
 #    By: hkumagai <hkumagai@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/13 09:18:03 by hkumagai          #+#    #+#              #
-#    Updated: 2022/08/29 22:51:17 by hkumagai         ###   ########.fr        #
+#    Updated: 2022/08/29 22:59:08 by hkumagai         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,10 +67,10 @@ re_bonus: fclean bonus
 
 test: all pre_test
 	@echo "TEST_CASE1"
-	@pgrep test_${SERVER_NAME} | xargs -i ./test_${CLIENT_NAME} {} ${TEST_CASE1}
+	@pgrep test_${SERVER_NAME} | xargs -I PID ./test_${CLIENT_NAME} PID ${TEST_CASE1}
 	@echo;
 	@echo "TEST_CASE2"
-	@pgrep test_${SERVER_NAME} | xargs -i ./test_${CLIENT_NAME} {} ${TEST_CASE2}
+	@pgrep test_${SERVER_NAME} | xargs -I PID ./test_${CLIENT_NAME} PID ${TEST_CASE2}
 	@echo;
 	@pgrep test_${SERVER_NAME} | xargs kill -9
 	@rm test_${SERVER_NAME} test_${CLIENT_NAME}
@@ -105,10 +105,10 @@ bonus_pre_test:
 
 bonus_test: bonus bonus_pre_test
 	@echo "TEST_CASE1"
-	@pgrep b_${SERVER_BONUS_NAME} | xargs -i ./b_${CLIENT_BONUS_NAME} {} ${TEST_CASE1}
+	@pgrep b_${SERVER_BONUS_NAME} | xargs -I PID ./b_${CLIENT_BONUS_NAME} PID ${TEST_CASE1}
 	@echo;
 	@echo "TEST_CASE2"
-	@pgrep b_${SERVER_BONUS_NAME} | xargs -i ./b_${CLIENT_BONUS_NAME} {} ${TEST_CASE2}
+	@pgrep b_${SERVER_BONUS_NAME} | xargs -I PID ./b_${CLIENT_BONUS_NAME} PID ${TEST_CASE2}
 	@echo;
 	@pgrep b_${SERVER_BONUS_NAME} | xargs kill
 	@rm b_${SERVER_BONUS_NAME} b_${CLIENT_BONUS_NAME}
