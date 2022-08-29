@@ -6,7 +6,7 @@
 /*   By: hkumagai <hkumagai@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 09:17:59 by hkumagai          #+#    #+#             */
-/*   Updated: 2022/08/29 06:38:26 by hkumagai         ###   ########.fr       */
+/*   Updated: 2022/08/29 07:17:47 by hkumagai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static void	sigFunc(int sig, siginfo_t *info, void *ucontext)
 	g_sigchar.count++;
 	if (g_sigchar.isBitEnd == false)
 		get_char(sig);
-	else
+	else if (g_sigchar.isBitEnd == true)
 		get_process_num(sig);
 	if (g_sigchar.count == BYTE_COUNT)
 	{

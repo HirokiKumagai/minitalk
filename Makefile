@@ -6,7 +6,7 @@
 #    By: hkumagai <hkumagai@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/13 09:18:03 by hkumagai          #+#    #+#              #
-#    Updated: 2022/08/29 06:39:49 by hkumagai         ###   ########.fr        #
+#    Updated: 2022/08/29 07:37:12 by hkumagai         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -101,7 +101,7 @@ ${CLIENT_BONUS_NAME}:mkd libMake ${CLIENT_BONUS_OBJ}
 
 bonus_pre_test:
 	./b_${SERVER_BONUS_NAME} &
-	@sleep 1
+	@sleep 2
 
 bonus_test: bonus bonus_pre_test
 	@echo "TEST_CASE1"
@@ -110,7 +110,7 @@ bonus_test: bonus bonus_pre_test
 	@echo "TEST_CASE2"
 	@pgrep b_${SERVER_BONUS_NAME} | xargs -i ./b_${CLIENT_BONUS_NAME} {} ${TEST_CASE2}
 	@echo;
-	@pgrep b_${SERVER_BONUS_NAME} | xargs kill -9
+	@pgrep b_${SERVER_BONUS_NAME} | xargs kill
 	@rm b_${SERVER_BONUS_NAME} b_${CLIENT_BONUS_NAME}
 
 .PHONY: all clean fclean re mkd libMake test pre_test kill_ps \

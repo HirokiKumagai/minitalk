@@ -6,7 +6,7 @@
 /*   By: hkumagai <hkumagai@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 09:17:59 by hkumagai          #+#    #+#             */
-/*   Updated: 2022/08/29 06:17:27 by hkumagai         ###   ########.fr       */
+/*   Updated: 2022/08/29 07:33:44 by hkumagai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ static void	sigFunc(int sig, siginfo_t *info, void *ucontext)
 		if (g_sigchar.bit == '\0')
 		{
 			ft_putchar_fd('\n', 1);
-			exit(1);
+			exit(0);
 		}
 
 		g_sigchar.bit = 0;
