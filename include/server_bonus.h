@@ -12,15 +12,18 @@
 # include <stdio.h>
 # include <errno.h>
 # include "../lib/ft_printf/include/ft_printf.h"
+# include "./send_char.h"
 
 
 typedef struct s_sigchar
 {
 	int				count;
 	unsigned char	bit;
-	bool			isEnd;
+	bool			isBitEnd;
+	unsigned char	clientPID;
+	unsigned int 	clientPIDs;
 }				t_sigchar;
 
-t_sigchar	g_sigchar = {0, 0, true};
+t_sigchar	g_sigchar = {0, 0, false, 0, 0};
 
 #endif

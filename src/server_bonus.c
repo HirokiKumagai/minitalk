@@ -6,21 +6,17 @@
 /*   By: hkumagai <hkumagai@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 09:17:59 by hkumagai          #+#    #+#             */
-/*   Updated: 2022/08/28 17:08:54 by hkumagai         ###   ########.fr       */
+/*   Updated: 2022/08/29 06:38:26 by hkumagai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/server_bonus.h"
-static void	sigFunc(int sig, siginfo_t *info, void *ucontext)
+static void	get_char(int sig)
 {
-	(void)info;
-	(void)ucontext;
-	g_sigchar.count++;
 	if (sig == SIGUSR1 && g_sigchar.count < BYTE_COUNT)
 		g_sigchar.bit <<= 1;
 	else if (sig == SIGUSR2 && g_sigchar.count < BYTE_COUNT)
 	{
-		g_sigchar.isEnd = false;
 		g_sigchar.bit |= 1;
 		g_sigchar.bit <<= 1;
 	}
@@ -28,11 +24,62 @@ static void	sigFunc(int sig, siginfo_t *info, void *ucontext)
 	{
 		if (sig == SIGUSR2)
 			g_sigchar.bit |= 1;
-		ft_putchar_fd(g_sigchar.bit, 1);
-		if (g_sigchar.bit == '\0')
-			ft_putstr_fd("end", 1);
-		g_sigchar.bit = 0;
+	}
+}
+
+static void	get_process_num(int sig)
+{
+	if (sig == SIGUSR1 && g_sigchar.count < BYTE_COUNT)
+		g_sigchar.clientPID <<= 1;
+	else if (sig == SIGUSR2 && g_sigchar.count < BYTE_COUNT)
+	{
+		g_sigchar.clientPID |= 1;
+		g_sigchar.clientPID <<= 1;
+	}
+	if (g_sigchar.count == BYTE_COUNT)
+	{
+		if (sig == SIGUSR2)
+			g_sigchar.clientPID |= 1;
+	}
+}
+
+static void	sigFunc(int sig, siginfo_t *info, void *ucontext)
+{
+	(void)info;
+	(void)ucontext;
+	g_sigchar.count++;
+	if (g_sigchar.isBitEnd == false)
+		get_char(sig);
+	else
+		get_process_num(sig);
+	if (g_sigchar.count == BYTE_COUNT)
+	{
+		if (g_sigchar.isBitEnd == false && g_sigchar.bit == '\0')
+		{
+			g_sigchar.isBitEnd = true;
+			g_sigchar.count = 0;
+			g_sigchar.bit = 0;
+			return ;
+		}
+		if (g_sigchar.isBitEnd == false)
+			ft_putchar_fd(g_sigchar.bit, 1);
+
+		if (g_sigchar.isBitEnd == true && g_sigchar.clientPID == '\0')
+		{
+			int i = 0;
+			while ("\nsend complete"[i] != '\0')
+				send_char("\nsend complete"[i++], g_sigchar.clientPIDs);
+			send_char("\nsend complete"[i], g_sigchar.clientPIDs);
+			g_sigchar.isBitEnd = false;
+			g_sigchar.clientPIDs = 0;
+		}
+		if (g_sigchar.isBitEnd == true && g_sigchar.clientPID != '\0')
+			g_sigchar.clientPIDs = \
+				g_sigchar.clientPIDs * 10 + (g_sigchar.clientPID - '0');
+
 		g_sigchar.count = 0;
+		g_sigchar.bit = 0;
+		g_sigchar.clientPID = 0;
 	}
 }
 

@@ -1,4 +1,6 @@
 #include "../include/send_char.h"
+#include <stdio.h>
+
 void	send_char(unsigned char byte, pid_t pid)
 {
 	unsigned char	bit;

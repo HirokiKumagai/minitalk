@@ -6,7 +6,7 @@
 /*   By: hkumagai <hkumagai@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 09:17:59 by hkumagai          #+#    #+#             */
-/*   Updated: 2022/08/28 15:25:37 by hkumagai         ###   ########.fr       */
+/*   Updated: 2022/08/29 06:17:27 by hkumagai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,56 @@ static int	check_args(int argc, char const *argv[], pid_t pid)
 	return (true);
 }
 
+static void	sigFunc(int sig, siginfo_t *info, void *ucontext)
+{
+	(void)info;
+	(void)ucontext;
+	g_sigchar.count++;
+	if (sig == SIGUSR1 && g_sigchar.count < BYTE_COUNT)
+		g_sigchar.bit <<= 1;
+	else if (sig == SIGUSR2 && g_sigchar.count < BYTE_COUNT)
+	{
+		g_sigchar.isBitEnd = false;
+		g_sigchar.bit |= 1;
+		g_sigchar.bit <<= 1;
+	}
+	if (g_sigchar.count == BYTE_COUNT)
+	{
+		if (sig == SIGUSR2)
+			g_sigchar.bit |= 1;
+		ft_putchar_fd(g_sigchar.bit, 1);
+		if (g_sigchar.bit == '\0')
+		{
+			ft_putchar_fd('\n', 1);
+			exit(1);
+		}
+
+		g_sigchar.bit = 0;
+		g_sigchar.count = 0;
+
+	}
+}
+
+static void	receive_signal(void)
+{
+	struct sigaction	act;
+
+	ft_bzero(&act, sizeof(struct sigaction));
+	sigemptyset(&act.sa_mask);
+	act.sa_flags = SA_SIGINFO;
+	act.sa_sigaction = sigFunc;
+	if (sigaction(SIGUSR1, &act, NULL) != 0)
+	{
+		ft_printf("Error: sigaction()\n");
+		exit(EXIT_ERROR);
+	}
+	if (sigaction(SIGUSR2, &act, NULL) != 0)
+	{
+		ft_printf("Error: sigaction()\n");
+		exit(EXIT_ERROR);
+	}
+}
+
 int	main(int argc, char const *argv[])
 {
 	pid_t	server_pid;
@@ -61,6 +111,7 @@ int	main(int argc, char const *argv[])
 	server_pid = ft_atoi(argv[1]);
 	if (check_args(argc, argv, server_pid) == false)
 		exit(1);
+	receive_signal();
 	i = 0;
 	while (argv[2][i] != '\0')
 	{
@@ -75,5 +126,11 @@ int	main(int argc, char const *argv[])
 		send_char((unsigned char)client_pid[i], server_pid);
 		i++;
 	}
+	send_char((unsigned char)client_pid[i], server_pid);
+	while (true)
+	{
+		pause();
+	}
+
 	return (0);
 }
