@@ -6,7 +6,7 @@
 #    By: hkumagai <hkumagai@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/13 09:18:03 by hkumagai          #+#    #+#              #
-#    Updated: 2022/08/29 22:19:49 by hkumagai         ###   ########.fr        #
+#    Updated: 2022/08/29 22:51:17 by hkumagai         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -113,5 +113,5 @@ bonus_test: bonus bonus_pre_test
 	@pgrep b_${SERVER_BONUS_NAME} | xargs kill
 	@rm b_${SERVER_BONUS_NAME} b_${CLIENT_BONUS_NAME}
 
-.PHONY: all clean fclean re mkd libMake test pre_test kill_ps \
+.PHONY: all clean fclean re mkd libMake kill_ps test pre_test \
 		bonus bonus_pre_test bonus_test re_bonus
