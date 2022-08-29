@@ -6,7 +6,7 @@
 #    By: hkumagai <hkumagai@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/13 09:18:03 by hkumagai          #+#    #+#              #
-#    Updated: 2022/08/29 07:37:12 by hkumagai         ###   ########.fr        #
+#    Updated: 2022/08/29 07:38:35 by hkumagai         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -114,4 +114,4 @@ bonus_test: bonus bonus_pre_test
 	@rm b_${SERVER_BONUS_NAME} b_${CLIENT_BONUS_NAME}
 
 .PHONY: all clean fclean re mkd libMake test pre_test kill_ps \
-		bonus bonus_test bonus_pre_test re_bonus
+		bonus bonus_pre_test bonus_test re_bonus

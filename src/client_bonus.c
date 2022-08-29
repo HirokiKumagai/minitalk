@@ -6,7 +6,7 @@
 /*   By: hkumagai <hkumagai@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 09:17:59 by hkumagai          #+#    #+#             */
-/*   Updated: 2022/08/29 07:33:44 by hkumagai         ###   ########.fr       */
+/*   Updated: 2022/08/29 07:40:35 by hkumagai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,8 @@ static void	sigFunc(int sig, siginfo_t *info, void *ucontext)
 			ft_putchar_fd('\n', 1);
 			exit(0);
 		}
-
 		g_sigchar.bit = 0;
 		g_sigchar.count = 0;
-
 	}
 }
 
@@ -114,23 +112,14 @@ int	main(int argc, char const *argv[])
 	receive_signal();
 	i = 0;
 	while (argv[2][i] != '\0')
-	{
-		send_char((unsigned char)argv[2][i], server_pid);
-		i++;
-	}
+		send_char((unsigned char)argv[2][i++], server_pid);
 	send_char((unsigned char)argv[2][i], server_pid);
 	i = 0;
 	client_pid = ft_itoa(getpid());
 	while (client_pid[i] != '\0')
-	{
-		send_char((unsigned char)client_pid[i], server_pid);
-		i++;
-	}
+		send_char((unsigned char)client_pid[i++], server_pid);
 	send_char((unsigned char)client_pid[i], server_pid);
 	while (true)
-	{
 		pause();
-	}
-
 	return (0);
 }
