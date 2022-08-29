@@ -1,8 +1,5 @@
 #ifndef CLIENT_BONUS_H
 # define CLIENT_BONUS_H
-# define EXIT_SUCCESS 0
-# define EXIT_ERROR 1
-# define BYTE_COUNT 8
 # define DARWIN_PID_MIN 100
 # define DARWIN_PID_MAX 99998
 
@@ -16,14 +13,8 @@
 # include <stdbool.h>
 # include "../lib/ft_printf/include/ft_printf.h"
 # include "./send_message.h"
+# include "./receive_signal.h"
+# include "./output_signal.h"
 
-typedef struct s_sigchar
-{
-	int				count;
-	unsigned char	bit;
-	bool			isBitEnd;
-}				t_sigchar;
-
-t_sigchar	g_sigchar = {0, 0, true};
-
+t_sigchar	g_sigchar = {0, 0, false, 0, 0};
 #endif

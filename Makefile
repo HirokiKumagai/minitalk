@@ -6,7 +6,7 @@
 #    By: hkumagai <hkumagai@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/13 09:18:03 by hkumagai          #+#    #+#              #
-#    Updated: 2022/08/29 21:45:37 by hkumagai         ###   ########.fr        #
+#    Updated: 2022/08/29 22:19:49 by hkumagai         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,8 +24,8 @@ CLIENT_BONUS_NAME = client_bonus
 SRCS_DIR = ./src
 SERVER_SRC = server.c
 CLIENT_SRC = client.c
-SERVER_BONUS_SRC = server_bonus.c send_message.c receive_signal.c
-CLIENT_BONUS_SRC = client_bonus.c send_message.c
+SERVER_BONUS_SRC = server_bonus.c send_message.c receive_signal.c output_signal.c
+CLIENT_BONUS_SRC = client_bonus.c send_message.c receive_signal.c output_signal.c
 
 OBJS_DIR = ./objs
 SERVER_OBJ = $(addprefix $(OBJS_DIR)/, $(notdir $(SERVER_SRC:.c=.o)))
