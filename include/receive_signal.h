@@ -12,6 +12,7 @@ void	sigFunc(int sig, siginfo_t *info, void *ucontext);
 void	receive_signal(void);
 void	get_char(int sig);
 void	get_process_num(int sig);
+void	tmpfunc(void);
 
 typedef struct s_sigchar
 {
