@@ -1,6 +1,7 @@
 #include "../include/receive_signal.h"
 
-void	receive_signal(void)
+void	receive_signal( \
+	void (*sigFunc)(int sig, siginfo_t *info, void *ucontext))
 {
 	struct sigaction	act;
 

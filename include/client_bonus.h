@@ -1,5 +1,6 @@
 #ifndef CLIENT_BONUS_H
 # define CLIENT_BONUS_H
+# define EXIT_SUCCESS 0
 # define EXIT_ERROR 1
 # define BYTE_COUNT 8
 # define DARWIN_PID_MIN 100

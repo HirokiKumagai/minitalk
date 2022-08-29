@@ -6,26 +6,11 @@
 /*   By: hkumagai <hkumagai@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 09:17:59 by hkumagai          #+#    #+#             */
-/*   Updated: 2022/08/29 07:40:35 by hkumagai         ###   ########.fr       */
+/*   Updated: 2022/08/29 21:45:15 by hkumagai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/client_bonus.h"
-// static void	printBitC(unsigned char c)
-// {
-// 	unsigned char	bit;
-
-// 	bit = 1 << 7;
-// 	while (bit != 0)
-// 	{
-// 		if (c & bit)
-// 			ft_putchar_fd('1', 1);
-// 		else
-// 			ft_putchar_fd('0', 1);
-// 		bit >>= 1;
-// 	}
-// 	ft_putchar_fd('\n', 1);
-// }
 static int	ft_puterr(char *errmsg)
 {
 	ft_putendl_fd(errmsg, 1);
@@ -73,7 +58,7 @@ static void	sigFunc(int sig, siginfo_t *info, void *ucontext)
 		if (g_sigchar.bit == '\0')
 		{
 			ft_putchar_fd('\n', 1);
-			exit(0);
+			exit(EXIT_SUCCESS);
 		}
 		g_sigchar.bit = 0;
 		g_sigchar.count = 0;
@@ -108,7 +93,7 @@ int	main(int argc, char const *argv[])
 
 	server_pid = ft_atoi(argv[1]);
 	if (check_args(argc, argv, server_pid) == false)
-		exit(1);
+		exit(EXIT_ERROR);
 	receive_signal();
 	i = 0;
 	while (argv[2][i] != '\0')

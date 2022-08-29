@@ -9,7 +9,8 @@
 # include "./send_message.h"
 
 void	sigFunc(int sig, siginfo_t *info, void *ucontext);
-void	receive_signal(void);
+void	receive_signal(\
+			void (*sigFunc)(int sig, siginfo_t *info, void *ucontext));
 void	get_char(int sig);
 void	get_process_num(int sig);
 void	tmpfunc(void);
