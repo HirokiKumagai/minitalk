@@ -37,9 +37,6 @@ fclean: clean
 
 re: fclean all
 
-mkd:
-	@mkdir -p ${OBJS_DIR}
-
 .PHONY: all clean fclean re mkd
 
 $(OBJS_DIR/)%.o: $(SRCS_DIR/)%.c $(OBJS_DIR/).keep
