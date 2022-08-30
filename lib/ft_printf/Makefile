@@ -35,11 +35,9 @@ $(NAME): $(OBJS) $(OUTPUT_DIR/).keep
 	ar $(ARFLAGS) $@ $(OBJS) $(OUTPUT_DIR/).keep
 
 clean:
-	make clean -C ../libft
 	${RM} ${OBJS_DIR} $(OUTPUT_DIR/).keep
 
 fclean: clean
-	make fclean -C ../libft
 	${RM} ${NAME}
 
 re: fclean all
