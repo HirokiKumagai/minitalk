@@ -6,112 +6,79 @@
 #    By: hkumagai <hkumagai@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/13 09:18:03 by hkumagai          #+#    #+#              #
-#    Updated: 2022/08/29 22:59:08 by hkumagai         ###   ########.fr        #
+#    Updated: 2022/08/31 06:36:57 by hkumagai         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
-CC = cc
-CFLAGS = -Wall -Werror -Wextra
-INCLUDE = -I./include
-LDFLAGS = -Llib/ft_printf -Llib/libft
-LIBS = -lftprintf -lft
 
 SERVER_NAME = server
 CLIENT_NAME = client
 SERVER_BONUS_NAME = server_bonus
 CLIENT_BONUS_NAME = client_bonus
 
-SRCS_DIR = ./src
-SERVER_SRC = server.c
-CLIENT_SRC = client.c
-SERVER_BONUS_SRC = server_bonus.c send_message.c receive_signal.c output_signal.c
-CLIENT_BONUS_SRC = client_bonus.c send_message.c receive_signal.c output_signal.c
+CC = cc
+CFLAGS = -Wall -Werror -Wextra
+ARFLAGS := -rcs
+INCLUDE = -I./include
+LDFLAGS = -Llib/ft_printf -Llib/libft
+LIBS = -lftprintf -lft
 
-OBJS_DIR = ./objs
-SERVER_OBJ = $(addprefix $(OBJS_DIR)/, $(notdir $(SERVER_SRC:.c=.o)))
-CLIENT_OBJ = $(addprefix $(OBJS_DIR)/, $(notdir $(CLIENT_SRC:.c=.o)))
-SERVER_BONUS_OBJ = $(addprefix $(OBJS_DIR)/, $(notdir $(SERVER_BONUS_SRC:.c=.o)))
-CLIENT_BONUS_OBJ = $(addprefix $(OBJS_DIR)/, $(notdir $(CLIENT_BONUS_SRC:.c=.o)))
+SRCS_DIR := ./src
+SRCS_DIR/ := $(if $(SRCS_DIR),$(patsubst %//,%/,$(SRCS_DIR)/),)
+SERVER_SRCS := $(addprefix $(SRCS_DIR/), server.c)
+CLIENT_SRCS := $(addprefix $(SRCS_DIR/), client.c)
+SERVER_BONUS_SRCS := $(addprefix $(SRCS_DIR/), server_bonus.c receive_signal.c output_signal.c send_message.c)
+CLIENT_BONUS_SRCS := $(addprefix $(SRCS_DIR/), client_bonus.c receive_signal.c output_signal.c send_message.c)
 
-TEST_CASE1 = minitalk
-TEST_CASE2 = 42Tokyo
+OBJS_DIR := ./objs
+OBJS_DIR/ := $(if $(OBJS_DIR),$(patsubst %//,%/,$(OBJS_DIR)/),)
+SERVER_OBJS := $(SERVER_SRCS:$(SRCS_DIR/)%.c=$(OBJS_DIR/)%.o)
+CLIENT_OBJS := $(CLIENT_SRCS:$(SRCS_DIR/)%.c=$(OBJS_DIR/)%.o)
+SERVER_BONUS_OBJS := $(SERVER_BONUS_SRCS:$(SRCS_DIR/)%.c=$(OBJS_DIR/)%.o)
+CLIENT_BONUS_OBJS := $(CLIENT_BONUS_SRCS:$(SRCS_DIR/)%.c=$(OBJS_DIR/)%.o)
 
-all: ${SERVER_NAME} ${CLIENT_NAME}
-
-libMake:
-	@make -C ./lib/ft_printf
-
-${OBJS_DIR}/%.o: ${SRCS_DIR}/%.c
-	$(CC) $(CFLAGS) $(INCLUDE) $(INCLUDE) -c $< -o $@
-
-${SERVER_NAME}:mkd libMake ${SERVER_OBJ}
-	@cp ./lib/ft_printf/libftprintf.a ${SERVER_NAME}
-	@ar -rcs $(SERVER_NAME) $(SERVER_OBJ)
-
-${CLIENT_NAME}:mkd libMake ${CLIENT_OBJ}
-	@cp ./lib/ft_printf/libftprintf.a ${CLIENT_NAME}
-	@ar -rcs $(CLIENT_NAME) $(CLIENT_OBJ)
+all: libMake $(SERVER_NAME) $(CLIENT_NAME)
 
 clean:
-	@rm -rf ${SERVER_NAME} ${CLIENT_NAME} ${SERVER_BONUS_NAME} ${CLIENT_BONUS_NAME} \
-	b_${SERVER_BONUS_NAME} b_${CLIENT_BONUS_NAME}
-	@make clean -C ./lib/ft_printf
+	make clean -C ./lib/libft
+	make clean -C ./lib/ft_printf
+	rm -rf ${OBJS_DIR}
 
 fclean: clean
-	@rm -r ./objs
-	@make fclean -C ./lib/ft_printf
+	make fclean -C ./lib/libft
+	make fclean -C ./lib/ft_printf
+	rm -rf ${SERVER_NAME} $(CLIENT_NAME) ${SERVER_BONUS_NAME} ${CLIENT_BONUS_NAME}
 
 re: fclean all
 
-re_bonus: fclean bonus
+bonus: libMake $(SERVER_BONUS_NAME)  $(CLIENT_BONUS_NAME)
 
-test: all pre_test
-	@echo "TEST_CASE1"
-	@pgrep test_${SERVER_NAME} | xargs -I PID ./test_${CLIENT_NAME} PID ${TEST_CASE1}
-	@echo;
-	@echo "TEST_CASE2"
-	@pgrep test_${SERVER_NAME} | xargs -I PID ./test_${CLIENT_NAME} PID ${TEST_CASE2}
-	@echo;
-	@pgrep test_${SERVER_NAME} | xargs kill -9
-	@rm test_${SERVER_NAME} test_${CLIENT_NAME}
+$(SERVER_NAME):$(SERVER_OBJS)
+	$(CC) $(CFLAGS) ${INCLUDE} $(SERVER_OBJS) ${LDFLAGS} ${LIBS} -o $(SERVER_NAME)
 
-pre_test:
-	$(CC) $(CFLAGS) ${SERVER_NAME} -o test_${SERVER_NAME}
-	$(CC) $(CFLAGS) ${CLIENT_NAME} -o test_${CLIENT_NAME}
-	./test_${SERVER_NAME} &
-	@sleep 1
+$(CLIENT_NAME):$(CLIENT_OBJS)
+	$(CC) $(CFLAGS) ${INCLUDE} $(CLIENT_OBJS) ${LDFLAGS} ${LIBS} -o $(CLIENT_NAME)
 
-kill_ps:
-	@pgrep ${SERVER_NAME} | xargs kill -9
+$(SERVER_BONUS_NAME):$(SERVER_BONUS_OBJS)
+	$(CC) $(CFLAGS) ${INCLUDE} $(SERVER_BONUS_OBJS) ${LDFLAGS} ${LIBS} -o $(SERVER_BONUS_NAME)
 
-mkd:
-	@mkdir -p ${OBJS_DIR}
+$(CLIENT_BONUS_NAME):$(CLIENT_BONUS_OBJS)
+	$(CC) $(CFLAGS) ${INCLUDE} $(CLIENT_BONUS_OBJS) ${LDFLAGS} ${LIBS} -o $(CLIENT_BONUS_NAME)
 
-bonus: ${SERVER_BONUS_NAME} ${CLIENT_BONUS_NAME}
+libMake:
+	make -C ./lib/ft_printf
+	make -C ./lib/libft
+	mkdir -p ./objs
 
-${SERVER_BONUS_NAME}: mkd libMake ${SERVER_BONUS_OBJ}
-	@cp ./lib/ft_printf/libftprintf.a ${SERVER_BONUS_NAME}
-	@ar -rcs $(SERVER_BONUS_NAME) $(SERVER_BONUS_OBJ)
-	$(CC) $(CFLAGS) ${SERVER_BONUS_NAME} -o b_${SERVER_BONUS_NAME}
+$(SERVER_OBJS): ${OBJS_DIR/}%.o: ${SRCS_DIR/}%.c
+	$(CC) -c $(CFLAGS) $< -o $@
 
-${CLIENT_BONUS_NAME}:mkd libMake ${CLIENT_BONUS_OBJ}
-	@cp ./lib/ft_printf/libftprintf.a ${CLIENT_BONUS_NAME}
-	@ar -rcs $(CLIENT_BONUS_NAME) $(CLIENT_BONUS_OBJ)
-	$(CC) $(CFLAGS) ${CLIENT_BONUS_NAME} -o b_${CLIENT_BONUS_NAME}
+$(CLIENT_OBJS): ${OBJS_DIR/}%.o: ${SRCS_DIR/}%.c
+	$(CC) -c $(CFLAGS) $< -o $@
 
-bonus_pre_test:
-	./b_${SERVER_BONUS_NAME} &
-	@sleep 2
+$(SERVER_BONUS_OBJS): ${OBJS_DIR/}%.o: ${SRCS_DIR/}%.c
+	$(CC) -c $(CFLAGS) $< -o $@
 
-bonus_test: bonus bonus_pre_test
-	@echo "TEST_CASE1"
-	@pgrep b_${SERVER_BONUS_NAME} | xargs -I PID ./b_${CLIENT_BONUS_NAME} PID ${TEST_CASE1}
-	@echo;
-	@echo "TEST_CASE2"
-	@pgrep b_${SERVER_BONUS_NAME} | xargs -I PID ./b_${CLIENT_BONUS_NAME} PID ${TEST_CASE2}
-	@echo;
-	@pgrep b_${SERVER_BONUS_NAME} | xargs kill
-	@rm b_${SERVER_BONUS_NAME} b_${CLIENT_BONUS_NAME}
+$(CLIENT_BONUS_OBJS): ${OBJS_DIR/}%.o: ${SRCS_DIR/}%.c
+	$(CC) -c $(CFLAGS) $< -o $@
 
-.PHONY: all clean fclean re mkd libMake kill_ps test pre_test \
-		bonus bonus_pre_test bonus_test re_bonus
+.PHONY: all clean fclean re bonus libMake
