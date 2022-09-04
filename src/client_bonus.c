@@ -6,7 +6,7 @@
 /*   By: hkumagai <hkumagai@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 09:17:59 by hkumagai          #+#    #+#             */
-/*   Updated: 2022/08/30 04:55:28 by hkumagai         ###   ########.fr       */
+/*   Updated: 2022/09/04 13:41:30 by hkumagai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ static int	check_args(int argc, char const *argv[])
 		return (ft_puterr("invalid pid of range"));
 	return (true);
 }
-
 
 int	main(int argc, char const *argv[])
 {

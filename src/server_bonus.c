@@ -6,12 +6,11 @@
 /*   By: hkumagai <hkumagai@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 09:17:59 by hkumagai          #+#    #+#             */
-/*   Updated: 2022/08/29 22:32:36 by hkumagai         ###   ########.fr       */
+/*   Updated: 2022/09/04 13:41:15 by hkumagai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/server_bonus.h"
-
 int	main(void)
 {
 	pid_t				pid;
